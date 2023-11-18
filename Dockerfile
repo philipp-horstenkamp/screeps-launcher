@@ -1,9 +1,11 @@
+# set the build arcitecture for example: amd64, arm64
+ARG GOARCH=amd64
 FROM golang AS builder
 WORKDIR /app
 COPY . .
 RUN CGO_ENABLED=0 \
     GOOS=linux \
-    GOARCH=amd64 \
+    GOARCH=${amd64} \
     go build -o screeps-launcher ./cmd/screeps-launcher
 
 FROM buildpack-deps:buster
